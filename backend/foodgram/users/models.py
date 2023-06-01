@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models import Q, F
 
 
 class User(AbstractUser):
@@ -33,3 +34,35 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class Subscribe(models.Model):
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='follower',
+        verbose_name='Пользователь',
+        help_text='Выберите пользователя, который подписывается'
+    )
+    following = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='following',
+        verbose_name='Автор',
+        help_text='Выберите автора, на которого подписываются'
+    )
+
+    class Meta:
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'
+        constraints = (
+            models.UniqueConstraint(fields=('user', 'following'),
+                                    name='unique_subscribe'),
+            models.CheckConstraint(check=Q(user=F('following')),
+                                   name='check_user_following')
+        )
+
+    def __str__(self):
+
+        return f'{self.user} {self.following}'

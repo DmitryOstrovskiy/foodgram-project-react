@@ -33,7 +33,7 @@ class CreateUserView(UserViewSet):
 class SubscribeViewSet(viewsets.ModelViewSet):
 
     serializer_class = SubscriptionSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
         return get_list_or_404(User, following__user=self.request.user)
@@ -66,9 +66,9 @@ class TagViewSet(viewsets.ModelViewSet):
 class RecipeViewSet(viewsets.ModelViewSet):
 
     queryset = Recipe.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     filter_class = RecipeFilters
-    filter_backends = [DjangoFilterBackend, ]
+    filter_backends = (DjangoFilterBackend,)
 
     def perform_create(self, serializer):
 
@@ -85,16 +85,16 @@ class RecipeViewSet(viewsets.ModelViewSet):
 class IngredientViewSet(viewsets.ModelViewSet):
 
     queryset = Ingredient.objects.all()
-    permission_classes = [permissions.AllowAny]
+    permission_classes = (permissions.AllowAny,)
     serializer_class = IngredientSerializer
     filter_backends = (DjangoFilterBackend, IngredientSearchFilter)
     pagination_class = None
-    search_fields = ['^name', ]
+    search_fields = ('^name',)
 
 
 class BaseFavoriteCartViewSet(viewsets.ModelViewSet):
 
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = (permissions.IsAuthenticated,)
 
     def create(self, request, *args, **kwargs):
         recipe_id = int(self.kwargs['recipes_id'])
