@@ -6,7 +6,6 @@ from .models import (
     Ingredient,
     IngredientRecipe,
     Recipe,
-    Subscribe,
     Tag,
     TagRecipe
 )
@@ -74,12 +73,3 @@ class RecipeAdmin(admin.ModelAdmin):
 
         return Favorite.objects.filter(recipe=obj).count()
     count_favorite.short_description = 'Число добавлении в избранное'
-
-
-@admin.register(Subscribe)
-class SubscribeAdmin(admin.ModelAdmin):
-
-    list_display = ('user', 'following')
-    search_fields = ('user', )
-    empty_value_display = '-пусто-'
-    list_filter = ('user',)

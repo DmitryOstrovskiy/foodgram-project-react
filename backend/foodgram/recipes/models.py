@@ -151,7 +151,7 @@ class IngredientRecipe(models.Model):
     amount = models.IntegerField(
         default=1,
         validators=(MinValueValidator(
-            1, message='Минимальное время приготовления 1 минута')
+            1, message='Минимальное время приготовления 1 минута'),
         ),
         verbose_name='Количество продукта',
         help_text='Введите количество продукта'
