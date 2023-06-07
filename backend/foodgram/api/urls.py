@@ -28,6 +28,7 @@ urlpatterns = [
          CartViewSet.as_view({'post': 'create',
                               'delete': 'delete'}), name='cart'),
     path('', include(v1_router.urls)),
+    path('', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path('api-token-auth/', views.obtain_auth_token),
+    # path('api-token-auth/', views.obtain_auth_token),
 ]
