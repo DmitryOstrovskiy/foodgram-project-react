@@ -1,3 +1,5 @@
+![Foodgram Workflow Status](https://github.com/dmitryostrovskiy/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg?branch=master&event=push)
+
 ### **Foodgram**/ _Продуктовый помощник_
 
 ### Описание
