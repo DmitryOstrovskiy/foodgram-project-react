@@ -62,9 +62,8 @@
 
 ### Проект развернут по адресу:
 
-- http:// . . . 
-- http:// . . . /admin - страница администратора
-- http:// . . . /redoc - документация API
+- http://dostrovskiy.ddns.net 
+- http://dostrovskiy.ddns.net/admin - страница администратора
 
 ### Локальная установка
 
